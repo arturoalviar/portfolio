@@ -1,0 +1,10 @@
+{
+  "bio": "bio.md",
+  "hobbies": "hobbies.md",
+  "mk": "mk.md",
+  "work": "work.md",
+  "images": {
+    "serika": "serika.jpg",
+    "switch": "switch.jpg"
+  }
+}

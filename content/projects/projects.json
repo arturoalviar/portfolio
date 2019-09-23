@@ -1,0 +1,52 @@
+{
+  "otherProjects": [
+    {
+      "title": "Vhue App Homepage",
+      "client": "",
+      "position": "Web Developer / UI/UX Designer",
+      "year": "2019",
+      "website": "https://vhue-homepage.arturoalviar.now.sh/",
+      "repository": "https://github.com/arturoalviar/vhue-homepage"
+    },
+    {
+      "title": "Maggie Grinnell Wordpress Site",
+      "client": "Maggie Grinnell",
+      "position": "Wordpress Developer / UI/UX Designer",
+      "year": "2019",
+      "website": "https://www.maggiegrinnell.com",
+      "repository": ""
+    },
+    {
+      "title": "Kollin Altomare Architects",
+      "client": "KAA via VDS",
+      "position": "Front End Web Developer / Wordpress Developer",
+      "year": "2018",
+      "website": "http://kollinaltomare.com",
+      "repository": ""
+    },
+    {
+      "title": "Orange County School of Arts",
+      "client": "OCSA via VDS",
+      "position": "Front End Web Developer",
+      "year": "2018",
+      "website": "https://www.ocsarts.net",
+      "repository": ""
+    },
+    {
+      "title": "Baka Ipsum",
+      "client": "",
+      "position": "Web Developer",
+      "year": "2016",
+      "website": "https://bakaipsum.herokuapp.com",
+      "repository": "https://github.com/arturoalviar/baka-ipsum"
+    },
+    {
+      "title": "Totally Real Quotes",
+      "client": "",
+      "position": "Web Developer",
+      "year": "2015",
+      "website": "https://bakaipsum.herokuapp.com",
+      "repository": "https://github.com/arturoalviar/baka-ipsum"
+    }
+  ]
+}

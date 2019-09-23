@@ -1,0 +1,61 @@
+{
+  "name": "aa-portfolio",
+  "private": true,
+  "description": "my personal porfolio site made with gastby",
+  "version": "0.1.0",
+  "author": "Arturo Alviar <yo@arturoalviar.com>",
+  "dependencies": {
+    "babel-plugin-styled-components": "^1.10.6",
+    "gatsby": "^2.15.16",
+    "gatsby-image": "^2.2.19",
+    "gatsby-plugin-lodash": "^3.1.7",
+    "gatsby-plugin-manifest": "^2.2.16",
+    "gatsby-plugin-offline": "^3.0.7",
+    "gatsby-plugin-react-helmet": "^3.1.7",
+    "gatsby-plugin-react-svg": "^2.1.2",
+    "gatsby-plugin-root-import": "^2.0.5",
+    "gatsby-plugin-sharp": "^2.2.22",
+    "gatsby-plugin-styled-components": "^3.1.5",
+    "gatsby-remark-external-links": "^0.0.4",
+    "gatsby-remark-images": "^3.1.22",
+    "gatsby-source-filesystem": "^2.1.22",
+    "gatsby-transformer-json": "^2.2.8",
+    "gatsby-transformer-remark": "^2.6.22",
+    "gatsby-transformer-sharp": "^2.2.14",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-helmet": "^5.2.0",
+    "react-pose": "^4.0.8",
+    "remark": "^11.0.1",
+    "remark-react": "^6.0.0",
+    "smoothscroll-polyfill": "^0.4.4",
+    "styled-components": "^4.3.2",
+    "styled-theming": "^2.2.0",
+    "typeface-muli": "^0.0.71",
+    "typeface-playfair-display": "^0.0.72"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-portfolio"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop --open",
+    "start": "npm run develop",
+    "format": "prettier --write \"src/**/*.js\"",
+    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+  },
+  "devDependencies": {
+    "prettier": "^1.16.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arturoalviar/aa-portfolio"
+  },
+  "bugs": {
+    "url": "https://github.com/arturoalviar/aa-portfolio/issues"
+  }
+}
