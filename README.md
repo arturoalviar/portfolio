@@ -19,8 +19,7 @@ Redesigned my portfolio using GatsbyJS
 
 ## License
 
-This repo is public so you can learn from it.
-You are **not allowed** to use, modify, or share this code for reasons other than educational purposes.
+This repo is public so you can learn from it. This, however, is **not** a theme so please do not copy it and use it as your own.
 
 If you have any questions about my portfolio, shoot me an email:
 [yo@arturoalviar.dev](mailto:yo@arturoalviar.dev).
