@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import posed, { PoseGroup } from 'react-pose'
 
 const transitionDuration = 400
@@ -21,10 +21,20 @@ const PageTransition = posed.div({
 })
 
 const Transition = ({ location, children }) => {
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    setLoaded(true)
+  }, [])
+
   return (
-    <PoseGroup animateOnMount preEnterPose="initial">
-      <PageTransition key={location.pathname}>{children}</PageTransition>
-    </PoseGroup>
+    <main className={loaded ? 'is-loaded' : 'is-loading'}>
+      <PoseGroup animateOnMount preEnterPose="initial">
+        <PageTransition id="transition-content" key={location.pathname}>
+          {children}
+        </PageTransition>
+      </PoseGroup>
+    </main>
   )
 }
 

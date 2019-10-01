@@ -37,6 +37,17 @@ export default createGlobalStyle`
     text-decoration: none;
   }
 
+  main.is-loading {
+    #transition-content{
+      visibility: hidden;
+    }
+  }
+  main.is-loaded {
+    #transition-content{
+      visibility: visible;
+    }
+  }
+
   ${globalType}
 
 `
