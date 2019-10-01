@@ -3,6 +3,8 @@ import GlobalStyle from '@styles/global.js'
 import theme from '@styles/theme.js'
 import { Header, Transition } from '@components'
 import { ThemeProvider } from 'styled-components'
+import 'typeface-muli'
+import 'typeface-playfair-display'
 
 const Wrapper = ({ children, location }) => {
   return (

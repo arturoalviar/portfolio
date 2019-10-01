@@ -1,5 +1,3 @@
-import 'typeface-muli'
-import 'typeface-playfair-display'
 import { css } from 'styled-components'
 import { remCalc } from '@styles/mixins'
 import { minMedia } from '@styles/breakpoints'
