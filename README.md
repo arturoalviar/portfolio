@@ -1,10 +1,12 @@
 # Arturo's Portfolio
 
-© Copyright 2019 Arturo Alviar. All Rights Reserved.
 Redesigned my portfolio using GatsbyJS
+
+© Copyright 2019 Arturo Alviar. All Rights Reserved.
 
 ## Features/Stack
 
+- Hosted on Zeit
 - React Hooks
 - React Pose for transitions
 - Styled components with styled theming
@@ -15,7 +17,6 @@ Redesigned my portfolio using GatsbyJS
 ## TODO
 
 - Use a headless CMS like prismic.io and phase out Remark + JSON
-- Host on Zeit or Netlify (after domain transfer)
 
 ## License
 
