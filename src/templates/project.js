@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import { graphql } from 'gatsby'
 import {
   Button,
@@ -21,6 +22,9 @@ const Project = ({
   return (
     <Layout>
       <SEO title={title} description={excerpt} />
+      <Helmet>
+        <body className="aa-project-page" />
+      </Helmet>
       <Banner title={title} spacing={150} variant="color">
         <h4>{excerpt}</h4>
         <Button to={website} hasIcon={true} linksOut>

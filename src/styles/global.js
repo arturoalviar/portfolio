@@ -1,5 +1,5 @@
 import theme from './theme'
-import { createGlobalStyle } from 'styled-components'
+import { css, createGlobalStyle } from 'styled-components'
 import { globalType } from '@styles/typography'
 
 const { colors, fonts, globalColor } = theme
@@ -50,4 +50,13 @@ export default createGlobalStyle`
 
   ${globalType}
 
+  ${props => {
+    if (props.theme.mode === 'dark') {
+      return css`
+        body.aa-project-page header a {
+          color: ${props.theme.colors.black};
+        }
+      `
+    }
+  }}
 `
