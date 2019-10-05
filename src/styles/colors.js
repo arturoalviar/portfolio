@@ -104,12 +104,12 @@ export const bgs = {
       }
     `,
     dark: css`
-      background-color: ${colors.lightGray};
-      color: ${colors.darkText};
+      background-color: ${colors.black};
+      color: ${colors.lightText};
       h1,
       h2,
       h3 {
-        color: ${colors.darkHeadingText};
+        color: ${colors.lightHeadingText};
       }
     `,
   },

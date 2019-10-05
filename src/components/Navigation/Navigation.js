@@ -23,7 +23,7 @@ const NavItems = styled.ul`
 
 const NavItem = styled.li`
   font-size: ${props => props.theme.mixins.remCalc(15)};
-  font-weight: 400;
+  font-weight: ${props => (props.theme.mode === 'dark' ? 600 : 400)};
   text-transform: lowercase;
   letter-spacing: 0.13em;
   margin: 0 ${props => props.theme.mixins.remCalc(5)};

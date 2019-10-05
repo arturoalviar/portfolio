@@ -29,7 +29,10 @@ const ProjectMetaItem = styled.div`
 
 const ProjectMetaLabel = styled.p`
   ${smallText}
-  color: ${props => props.theme.colors.darkText};
+  color: ${props =>
+    props.theme.mode === 'dark'
+      ? props.theme.colors.white
+      : props.theme.colors.darkText};
   line-height: 1;
   position: relative;
   margin-bottom: 0.5em;
