@@ -20,6 +20,7 @@ import {
 import Section from './Section'
 import SEO from './SEO'
 import Social from './Social'
+import ThemeContext from './ThemeContext'
 import Title from './Title'
 import Transition from './Transition'
 import Wrapper from './Wrapper'
@@ -48,6 +49,7 @@ export {
   Section,
   SEO,
   Social,
+  ThemeContext,
   Title,
   Transition,
   Wrapper,
