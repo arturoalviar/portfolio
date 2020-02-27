@@ -6,6 +6,7 @@
   "author": "Arturo Alviar <yo@arturoalviar.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.6",
+    "framer-motion": "^1.8.4",
     "gatsby": "^2.15.28",
     "gatsby-image": "^2.2.23",
     "gatsby-plugin-lodash": "^3.1.10",
@@ -27,7 +28,6 @@
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-helmet": "^5.2.0",
-    "react-pose": "^4.0.8",
     "remark": "^11.0.1",
     "remark-react": "^6.0.0",
     "smoothscroll-polyfill": "^0.4.4",
