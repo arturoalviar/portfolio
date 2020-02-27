@@ -1,33 +1,71 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import posed from 'react-pose'
+import { motion } from 'framer-motion'
 import { Social } from '@components'
 import { navItems } from 'config/vars'
 
-const PoseMobileNavWrapper = posed.div({
+const MobileNavWrapperVariants = {
   open: {
     opacity: 1,
     x: '0%',
-    staggerChildren: 300,
     transition: {
       type: 'spring',
       stiffness: 200,
-      damping: 20,
-    },
-  },
-  closed: {
-    opacity: 0.25,
-    x: '-100%',
-    transition: {
-      type: 'spring',
-      stiffness: 120,
       damping: 40,
     },
   },
-})
+  closed: {
+    x: '100%',
+    transition: {
+      type: 'spring',
+      mass: 0.5,
+    },
+  },
+}
 
-const MobileNavWrapper = styled(PoseMobileNavWrapper)`
+const MobileNavItemsVariants = {
+  open: {
+    transition: {
+      staggerChildren: 0.25,
+      delayChildren: 0.1,
+    },
+  },
+  closed: {
+    transition: {
+      staggerChildren: 0.25,
+      staggerDirection: -1,
+    },
+  },
+}
+
+const MobileNavItemVariants = {
+  open: {
+    opacity: 1,
+    x: 0,
+  },
+  closed: {
+    opacity: 0,
+    x: 100,
+  },
+}
+
+const MobileSocialVariants = {
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 120,
+    },
+  },
+  closed: {
+    opacity: 0,
+    y: 100,
+  },
+}
+
+const MobileNavWrapper = styled(motion.div)`
   background: ${props => props.theme.colors.black};
   position: fixed;
   top: 0;
@@ -54,21 +92,12 @@ const MobileNavItemsContainer = styled.div`
   margin-bottom: ${props => props.theme.mixins.remCalc(80)};
 `
 
-const PoseMobileNavItems = posed.ul({
-  open: { staggerChildren: 150 },
-})
-
-const MobileNavItems = styled(PoseMobileNavItems)`
+const MobileNavItems = styled(motion.ul)`
   padding: 0;
   margin: 0;
 `
 
-const PoseNavItem = posed.li({
-  open: { opacity: 1 },
-  closed: { opacity: 0 },
-})
-
-const MobileNavItem = styled(PoseNavItem)`
+const MobileNavItem = styled(motion.li)`
   color: ${props => props.theme.colors.white};
   display: block;
   font-size: ${props => props.theme.mixins.remCalc(24)};
@@ -83,12 +112,7 @@ const MobileNavItem = styled(PoseNavItem)`
   }
 `
 
-const PoseMobileSocial = posed.div({
-  open: { opacity: 1 },
-  closed: { opacity: 0 },
-})
-
-const MobileSocial = styled(PoseMobileSocial)`
+const MobileSocial = styled(motion.div)`
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -111,7 +135,10 @@ const MobileNav = ({ forwardRef, isMobileMenuVisible, toggleMobileMenu }) => {
   const renderMobileNavItems = (item, index) => {
     const { label, slug } = item
     return (
-      <MobileNavItem key={`mobile-menu-item-${index}}`}>
+      <MobileNavItem
+        variants={MobileNavItemVariants}
+        key={`mobile-menu-item-${index}}`}
+      >
         <Link to={`/${slug}`} onClick={handleClick}>
           {label}
         </Link>
@@ -122,12 +149,16 @@ const MobileNav = ({ forwardRef, isMobileMenuVisible, toggleMobileMenu }) => {
     <MobileNavWrapper
       ref={forwardRef}
       id="aa-mobile-nav"
-      pose={isMobileMenuVisible ? 'open' : 'closed'}
+      initial={false}
+      animate={isMobileMenuVisible ? 'open' : 'closed'}
+      variants={MobileNavWrapperVariants}
     >
       <MobileNavItemsContainer>
-        <MobileNavItems>{navItems.map(renderMobileNavItems)}</MobileNavItems>
+        <MobileNavItems variants={MobileNavItemsVariants}>
+          {navItems.map(renderMobileNavItems)}
+        </MobileNavItems>
       </MobileNavItemsContainer>
-      <MobileSocial>
+      <MobileSocial variants={MobileSocialVariants}>
         <Social />
       </MobileSocial>
     </MobileNavWrapper>

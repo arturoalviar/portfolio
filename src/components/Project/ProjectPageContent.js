@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import theme from 'styled-theming'
-import posed from 'react-pose'
+import { motion } from 'framer-motion'
 import smoothscroll from 'smoothscroll-polyfill'
 import {
   ProjectAdditionalCollection,
@@ -29,12 +29,18 @@ const ButtonWrapper = styled.div`
   `}
 `
 
-const AdditionalProjectsPose = posed.div({
-  closed: { height: 0, opacity: 0 },
-  open: { height: 'auto', opacity: 1 },
-})
+const AdditionalProjectsVariants = {
+  closed: {
+    height: 0,
+    opacity: 0,
+  },
+  open: {
+    height: 'auto',
+    opacity: 1,
+  },
+}
 
-const AdditionalProjects = styled(AdditionalProjectsPose)`
+const AdditionalProjects = styled(motion.div)`
   overflow: hidden;
 `
 
@@ -88,8 +94,11 @@ const ProjectPageContent = () => {
         </ButtonWrapper>
         <AdditionalProjects
           ref={moreProjectsRef}
-          pose={showMoreProjects ? 'open' : 'closed'}
-          onPoseComplete={scrollAfterAnimation}
+          initial={false}
+          animate={showMoreProjects ? 'open' : 'closed'}
+          variants={AdditionalProjectsVariants}
+          onAnimationComplete={scrollAfterAnimation}
+          transition={{ duration: 0.525, ease: [0.04, 0.62, 0.23, 0.98] }}
         >
           <AdditionalProjectsWrapper>
             <ProjectAdditionalCollection />
