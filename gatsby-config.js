@@ -1,6 +1,10 @@
 const config = require('./config/site')
 const path = require('path')
 
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: config.siteTitle,
@@ -18,6 +22,14 @@ module.exports = {
         '@components': path.join(__dirname, 'src/components'),
         '@styles': path.join(__dirname, 'src/styles'),
         config: path.join(__dirname, 'config'),
+      },
+    },
+    {
+      resolve: 'gatsby-source-prismic-graphql',
+      options: {
+        repositoryName: `${process.env.PRISMIC_REPO_NAME}`,
+        accessToken: `${process.env.PRISMIC_API_KEY}`,
+        linkResolver: ({ node, key, value }) => post => `/${post.uid}`,
       },
     },
     `gatsby-transformer-json`,
