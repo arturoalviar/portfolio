@@ -1,0 +1,8 @@
+{
+  "build": {
+    "env": {
+      "PRISMIC_REPO_NAME": "@prismic_repo_name",
+      "PRISMIC_API_KEY": "@prismic_api_key"
+    }
+  }
+}
