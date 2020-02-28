@@ -5999,7 +5999,7 @@ gatsby-source-filesystem@^2.1.2, gatsby-source-filesystem@^2.1.48:
     valid-url "^1.0.9"
     xstate "^4.7.2"
 
-gatsby-source-graphql-universal@^3.1.4:
+gatsby-source-graphql-universal@^3.1.6:
   version "3.1.11"
   resolved "https://registry.yarnpkg.com/gatsby-source-graphql-universal/-/gatsby-source-graphql-universal-3.1.11.tgz#9cddbd7eec4870968be3e0cdf0541f9f85703512"
   integrity sha512-Qae0kVi5P8Dl7Eak+tVnPiYWqbK7vr3K+mTp5Bvyp04+iNZC9fwcOrIWKVvbGQVxBKolESqBrmXEyAWEYcem4Q==
@@ -6028,19 +6028,19 @@ gatsby-source-graphql@^2.0.15, gatsby-source-graphql@^2.0.8:
     node-fetch "^1.7.3"
     uuid "^3.3.3"
 
-gatsby-source-prismic-graphql@^3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/gatsby-source-prismic-graphql/-/gatsby-source-prismic-graphql-3.3.1.tgz#85524af96ce68431d571ab67cf3dbb94837c2b4a"
-  integrity sha512-ZQLCODgfTpvlkwHj2zoZ/lTd64DHNwRbssKRhdKJzfbYlFqHCf1y+aUfJUKTYJFEtE7PhgGtr48ZMLZGSuFupw==
+gatsby-source-prismic-graphql@^3.4.0-beta.2:
+  version "3.4.0-beta.2"
+  resolved "https://registry.yarnpkg.com/gatsby-source-prismic-graphql/-/gatsby-source-prismic-graphql-3.4.0-beta.2.tgz#b358a3b1c29ed2efda3bb404b538bc551d320e70"
+  integrity sha512-/zDqgPea2uSKdbBIWYi8Ngypz06zwBdeVlHRCmUnnyfBvV4hyxYTO7dyjTet9BBcb2jaaV7ZxeKew1Y6sc90+w==
   dependencies:
     apollo-boost "^0.3.1"
     apollo-link-context "^1.0.17"
     gatsby-image "^2.2.4"
     gatsby-source-filesystem "^2.1.2"
     gatsby-source-graphql "^2.0.15"
-    gatsby-source-graphql-universal "^3.1.4"
+    gatsby-source-graphql-universal "^3.1.6"
     path-to-regexp "^3.0.0"
-    prismic-javascript "^2.0.1"
+    prismic-javascript "^2.1.1"
     traverse "^0.6.6"
     url-pattern "^1.0.3"
 
@@ -10712,7 +10712,7 @@ prismic-helpers@^1.0.0:
   resolved "https://registry.yarnpkg.com/prismic-helpers/-/prismic-helpers-1.0.0.tgz#8337420cf187f55fb7b7a8be755523c8696fc329"
   integrity sha1-gzdCDPGH9V+3t6i+dVUjyGlvwyk=
 
-prismic-javascript@^2.0.1:
+prismic-javascript@^2.1.1:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/prismic-javascript/-/prismic-javascript-2.1.5.tgz#7170ce830c7176df442d91f11cda4db5a5679599"
   integrity sha512-rBZ97TpvrshbwrqzZpO7kZWzzNu/iczBCwRn90Gtdt3P7k6f7o9bNVD+8khmt9nmM1nvdQkU9w17R4UU+uxVGg==
