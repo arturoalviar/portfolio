@@ -6,7 +6,7 @@ import { StaticQuery, graphql } from 'gatsby'
 function SEO({ pathname, description, lang, meta, keywords, title }) {
   return (
     <StaticQuery
-      query={detailsQuery}
+      query={`${detailsQuery}`}
       render={data => {
         const metaDescription =
           description || data.site.siteMetadata.description
