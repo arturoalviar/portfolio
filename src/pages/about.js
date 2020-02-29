@@ -16,6 +16,7 @@ import {
 } from '@components'
 import linkCss from '@styles/links'
 import { socialLinks } from 'config/vars'
+import { customLink } from '../utils/linkResolver'
 
 const AboutContainer = styled(Container)`
   a {
@@ -57,7 +58,7 @@ const About = ({ data }) => {
               <AboutGrid justify="center">
                 <GridFlexItem md="8">
                   <Title>{heading}</Title>
-                  <RichText render={content} />
+                  <RichText render={content} serializeHyperlink={customLink} />
                 </GridFlexItem>
               </AboutGrid>
             </AboutContainer>
@@ -67,9 +68,8 @@ const About = ({ data }) => {
       <Section variant="inverse">
         {hobbies.map((hobby, index) => {
           const { heading, content, imageSharp } = hobby
-          console.log(imageSharp)
           return (
-            <>
+            <div key={`hobby-${index}`}>
               <Container>
                 <AboutImageWrapper>
                   <Img fluid={imageSharp.childImageSharp.fluid} />
@@ -83,7 +83,7 @@ const About = ({ data }) => {
                   </GridFlexItem>
                 </AboutGrid>
               </AboutContainer>
-            </>
+            </div>
           )
         })}
       </Section>
