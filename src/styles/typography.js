@@ -76,7 +76,10 @@ export const globalType = css`
   }
 
   h5 {
-    font-size: ${remCalc(20)};
+    font-size: ${remCalc(18)};
+    ${minMedia.md`
+      font-size: ${remCalc(20)};
+    `}
   }
 
   p {
