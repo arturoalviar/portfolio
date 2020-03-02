@@ -32,7 +32,15 @@ const ButtonGroup = styled.div`
 `
 
 const ProjectBasic = ({ details }) => {
-  const { client, position, repository, title, website, year } = details
+  const {
+    title,
+    role,
+    personalproject,
+    link,
+    completed,
+    client,
+    source,
+  } = details
 
   return (
     <ProjectBasicWrapper>
@@ -41,18 +49,20 @@ const ProjectBasic = ({ details }) => {
           <h2>{title}</h2>
           <ProjectBasicDetails>
             <p>
-              Completed in {year}
-              {client ? ` for ${client}` : ' as a personal project'}.
+              Completed in {completed}
+              {personalproject ? ' as a personal project' : ` for ${client}`}.
             </p>
-            <p>Role: {position}.</p>
+            <p>Role: {role}.</p>
           </ProjectBasicDetails>
         </div>
         <ButtonGroup>
-          <Button to={website} variant="color" linksOut>
-            Visit Site
-          </Button>
-          {repository && (
-            <Button to={repository} type="ghost" linksOut>
+          {link && (
+            <Button to={link.url} variant="color" linksOut>
+              Visit Site
+            </Button>
+          )}
+          {source && (
+            <Button to={source.url} type="ghost" linksOut>
               View Code
             </Button>
           )}
@@ -63,7 +73,19 @@ const ProjectBasic = ({ details }) => {
 }
 
 ProjectBasic.propTypes = {
-  details: PropTypes.object,
+  details: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+    completed: PropTypes.string.isRequired,
+    personalproject: PropTypes.bool.isRequired,
+    client: PropTypes.string,
+    link: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    }),
+    source: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    }),
+  }),
 }
 
 export default ProjectBasic
