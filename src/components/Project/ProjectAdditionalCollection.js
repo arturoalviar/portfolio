@@ -2,17 +2,19 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import { Container, ProjectBasic } from '@components'
 
-const ProjectAdditionalCollection = ({ type }) => (
+const ProjectAdditionalCollection = () => (
   <Container>
     <StaticQuery
-      query={ProjectsAdditionalQuery}
-      render={({ allProjectsJson }) => {
-        const { id, otherProjects } = allProjectsJson.edges[0].node
-
+      query={`${ProjectsAdditionalQuery}`}
+      render={({
+        prismic: {
+          allBasicProjects: { edges },
+        },
+      }) => {
         return (
           <>
-            {otherProjects.map((project, index) => (
-              <ProjectBasic key={`project-${id}-${index}`} details={project} />
+            {edges.map(({ node: details }, index) => (
+              <ProjectBasic key={`project-${index}`} details={details} />
             ))}
           </>
         )
@@ -23,17 +25,25 @@ const ProjectAdditionalCollection = ({ type }) => (
 
 export const ProjectsAdditionalQuery = graphql`
   query ProjectsAdditionalQuery {
-    allProjectsJson {
-      edges {
-        node {
-          id
-          otherProjects {
+    prismic {
+      allBasicProjects(sortBy: completed_DESC) {
+        edges {
+          node {
             title
+            role
+            personalproject
+            link {
+              ... on PRISMIC__ExternalLink {
+                url
+              }
+            }
+            completed
             client
-            position
-            year
-            website
-            repository
+            source {
+              ... on PRISMIC__ExternalLink {
+                url
+              }
+            }
           }
         }
       }
