@@ -4,42 +4,71 @@ import { graphql } from 'gatsby'
 import {
   Button,
   Layout,
-  ProjectConclusion,
   ProjectIntro,
   ProjectHighlight,
+  ProjectConclusion,
   ProjectPagination,
   SEO,
 } from '@components'
 import Banner from '@components/Banner'
 
 const Project = ({
-  pageContext: { prevSlug, prevTitle, nextTitle, nextSlug },
-  data: { markdownRemark: postNode, intro, middle, conclusion },
+  data: {
+    prismic: { project, prevNode, nextNode },
+  },
 }) => {
-  const { excerpt } = postNode
-  const { title, website } = postNode.frontmatter
+  const {
+    title,
+    tagline,
+    body,
+    completed,
+    client,
+    personalproject,
+    role,
+    website,
+    source,
+  } = project
+  const {
+    title: nextTitle,
+    _meta: { uid: nextUid },
+  } = nextNode
+  const {
+    title: prevTitle,
+    _meta: { uid: prevUid },
+  } = prevNode
+  const introMeta = {
+    completed,
+    client,
+    personalproject,
+    role,
+  }
+  const conclusionMeta = {
+    website,
+    source,
+  }
+  const introDetails = body[0]
+  const highlightDetails = body[1]
+  const conclusionDetails = body[2]
 
   return (
     <Layout>
-      <SEO title={title} description={excerpt} />
+      <SEO title={title} description={tagline} />
       <Helmet>
         <body className="aa-project-page" />
       </Helmet>
       <Banner title={title} spacing={150} variant="color">
-        <h4>{excerpt}</h4>
-        <Button to={website} hasIcon={true} linksOut>
+        <h4>{tagline}</h4>
+        <Button to={website.url} hasIcon={true} linksOut>
           See Website
         </Button>
       </Banner>
-
-      <ProjectIntro details={intro} meta={postNode.frontmatter} />
-      <ProjectHighlight details={middle} />
-      <ProjectConclusion details={conclusion} meta={postNode.frontmatter} />
-
+      <ProjectIntro details={introDetails} meta={introMeta} />
+      <ProjectHighlight details={highlightDetails} />
+      <ProjectConclusion details={conclusionDetails} meta={conclusionMeta} />
       <ProjectPagination
-        prevSlug={prevSlug}
+        prevSlug={prevUid}
         prevTitle={prevTitle}
-        nextSlug={nextSlug}
+        nextSlug={nextUid}
         nextTitle={nextTitle}
       />
     </Layout>
@@ -49,76 +78,85 @@ const Project = ({
 export default Project
 
 export const projectQuery = graphql`
-  query($slug: String!) {
-    markdownRemark(
-      frontmatter: { slug: { eq: $slug } }
-      fileAbsolutePath: { regex: "/index.md/" }
-    ) {
-      fields {
-        date
-        slug
-      }
-      frontmatter {
+  query($uid: String!, $prevNode: String!, $nextNode: String!) {
+    prismic {
+      project(lang: "en-us", uid: $uid) {
         title
-        position
-        website
-        repository
-        year
+        tagline
+        completed
         client
-      }
-      excerpt
-    }
-    intro: markdownRemark(
-      frontmatter: { slug: { eq: $slug } }
-      fileAbsolutePath: { regex: "/intro.md/" }
-    ) {
-      frontmatter {
-        title
-        heading
-        image {
-          childImageSharp {
-            fluid(maxWidth: 1300, quality: 80) {
-              ...GatsbyImageSharpFluid
+        personalproject
+        role
+        website {
+          ... on PRISMIC__ExternalLink {
+            url
+          }
+        }
+        source {
+          ... on PRISMIC__ExternalLink {
+            url
+          }
+        }
+        body {
+          ... on PRISMIC_ProjectBodyIntro {
+            primary {
+              title
+              content
+              image
+              imageSharp {
+                childImageSharp {
+                  fluid(maxWidth: 1300, quality: 80) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+          }
+          ... on PRISMIC_ProjectBodyHighlight {
+            primary {
+              title
+              content
+              image
+              imageSharp {
+                childImageSharp {
+                  fluid(maxWidth: 1300, quality: 80) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+            fields {
+              tool
+            }
+          }
+          ... on PRISMIC_ProjectBodyConclusion {
+            primary {
+              title
+              content
+              image
+              imageSharp {
+                childImageSharp {
+                  fluid(maxWidth: 1300, quality: 80) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
             }
           }
         }
       }
-      html
-    }
-    middle: markdownRemark(
-      frontmatter: { slug: { eq: $slug } }
-      fileAbsolutePath: { regex: "/middle.md/" }
-    ) {
-      frontmatter {
+      prevNode: project(lang: "en-us", uid: $prevNode) {
         title
-        heading
-        image {
-          childImageSharp {
-            fluid(maxWidth: 1300, quality: 80) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        stack
-      }
-      html
-    }
-    conclusion: markdownRemark(
-      frontmatter: { slug: { eq: $slug } }
-      fileAbsolutePath: { regex: "/conclusion.md/" }
-    ) {
-      frontmatter {
-        title
-        heading
-        image {
-          childImageSharp {
-            fluid(maxWidth: 1300, quality: 80) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+        _meta {
+          uid
         }
       }
-      html
+      nextNode: project(lang: "en-us", uid: $nextNode) {
+        title
+        _meta {
+          uid
+        }
+      }
     }
   }
 `
