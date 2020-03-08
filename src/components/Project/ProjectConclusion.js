@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
+import { RichText } from 'prismic-reactjs'
+
 import {
   Button,
   Container,
@@ -38,31 +40,30 @@ const EndLinks = styled.div`
 `
 
 const ProjectConclusion = ({ details, variant, meta }) => {
-  const { heading } = details.frontmatter
-  const { website, repository } = meta
-  const { fluid } = details.frontmatter.image.childImageSharp
-  const { html } = details
+  const { primary } = details
+  const { title, content, imageSharp } = primary
+  const { website, source } = meta
 
   return (
     <>
       <Section variant={variant}>
         <ImageContainer size="large">
           <ImageWrapper>
-            <Img fluid={fluid} />
+            <Img fluid={imageSharp.childImageSharp.fluid} />
           </ImageWrapper>
         </ImageContainer>
         <Container>
           <GridFlex align="center" justify="space-between">
             <GridFlexItem md="7">
-              <Title>{heading}</Title>
-              <div dangerouslySetInnerHTML={{ __html: html }} />
+              <Title>{title}</Title>
+              <RichText render={content} />
             </GridFlexItem>
             <EndLinks>
-              <Button to={website} hasIcon={true} variant="color" linksOut>
+              <Button to={website.url} hasIcon={true} variant="color" linksOut>
                 View Website
               </Button>
-              {repository && (
-                <Button to={repository} linksOut>
+              {source && (
+                <Button to={source.url} linksOut>
                   View Code
                 </Button>
               )}

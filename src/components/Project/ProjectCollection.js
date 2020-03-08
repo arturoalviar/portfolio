@@ -5,22 +5,37 @@ import { Container, Grid, Project } from '@components'
 const ProjectCollection = ({ type }) => (
   <Container>
     <StaticQuery
-      query={ProjectsQuery}
-      render={data => {
-        const projects = data.projects.edges
+      query={`${ProjectsQuery}`}
+      render={({ prismic }) => {
+        const projects = prismic.projects.edges
 
         return (
           <Grid>
-            {projects.map((project, index) => (
-              <Project
-                key={`project-${project.node.id}`}
-                id={`project-${project.node.id}`}
-                index={index}
-                details={project.node.frontmatter}
-                excerpt={project.node.excerpt}
-                type="card"
-              />
-            ))}
+            {projects.map((project, index) => {
+              const {
+                title,
+                _meta,
+                tagline,
+                website,
+                imageSharp,
+              } = project.node
+              const details = {
+                title,
+                website,
+                imageSharp,
+                uid: _meta.uid,
+              }
+              return (
+                <Project
+                  key={`project-${_meta.uid}`}
+                  id={`project-${_meta.uid}`}
+                  index={index}
+                  details={details}
+                  excerpt={tagline}
+                  type="card"
+                />
+              )
+            })}
           </Grid>
         )
       }}
@@ -30,27 +45,29 @@ const ProjectCollection = ({ type }) => (
 
 export const ProjectsQuery = graphql`
   query ProjectsQuery {
-    projects: allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/index.md/" } }
-      sort: { fields: frontmatter___date, order: DESC }
-    ) {
-      edges {
-        node {
-          id
-          frontmatter {
+    prismic {
+      projects: allProjects(sortBy: completed_DESC) {
+        edges {
+          node {
             title
-            position
-            slug
-            website
-            image {
+            tagline
+            _meta {
+              uid
+            }
+            image
+            imageSharp {
               childImageSharp {
-                fluid(maxWidth: 540, quality: 80) {
+                fluid(maxWidth: 720, quality: 80) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
+            website {
+              ... on PRISMIC__ExternalLink {
+                url
+              }
+            }
           }
-          excerpt
         }
       }
     }

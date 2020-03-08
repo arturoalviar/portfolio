@@ -1,10 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { withPrefix } from 'gatsby'
 import Img from 'gatsby-image'
+import { RichText } from 'prismic-reactjs'
+import { withPrefix } from 'gatsby'
+
 import { Container, GridFlex, GridFlexItem, Title } from '@components'
 import Section from '@components/Section'
+
 import { smallText } from '@styles/typography'
 import linkCss from '@styles/links'
 
@@ -88,42 +91,37 @@ const ProjectIntroHighlightImage = styled.div`
 `
 
 const ProjectIntro = ({ children, details, meta, variant }) => {
-  const { heading } = details.frontmatter
-  const { client, position, year } = meta
-  const { fluid } = details.frontmatter.image.childImageSharp
-  const { html } = details
+  const { completed, client, personalproject, role } = meta
+  const { primary } = details
+  const { title, content, imageSharp } = primary
 
   return (
     <ProjectIntroSection>
       <Container size="large">
         <ProjectIntroHighlightImage>
-          <Img fluid={fluid} />
+          <Img fluid={imageSharp.childImageSharp.fluid} />
         </ProjectIntroHighlightImage>
       </Container>
       <Container>
         <GridFlex justify="space-between">
           <GridFlexItem md="7">
-            <Title
-              dangerouslySetInnerHTML={{
-                __html: heading,
-              }}
-            />
-            <div dangerouslySetInnerHTML={{ __html: html }} />
+            <Title>{title}</Title>
+            <RichText render={content} />
           </GridFlexItem>
           <ProjectMeta>
             <ProjectMetaItem>
               <ProjectMetaLabel>Completed</ProjectMetaLabel>
-              <div style={{ paddingLeft: '1.25rem' }}>{year}</div>
+              <div style={{ paddingLeft: '1.25rem' }}>{completed}</div>
             </ProjectMetaItem>
             <ProjectMetaItem>
               <ProjectMetaLabel>Client</ProjectMetaLabel>
               <div style={{ paddingLeft: '1.25rem' }}>
-                {client ? client : 'Personal Project'}
+                {personalproject ? 'Personal Project' : client}
               </div>
             </ProjectMetaItem>
             <ProjectMetaItem>
               <ProjectMetaLabel>Role</ProjectMetaLabel>
-              <div style={{ paddingLeft: '1.25rem' }}>{position}</div>
+              <div style={{ paddingLeft: '1.25rem' }}>{role}</div>
             </ProjectMetaItem>
           </ProjectMeta>
         </GridFlex>

@@ -2,8 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
+import { RichText } from 'prismic-reactjs'
+
 import { Container, GridFlex, GridFlexItem, Title } from '@components'
 import Section from '@components/Section'
+
 import linkCss from '@styles/links'
 
 const HighlightSection = styled(Section)`
@@ -58,29 +61,28 @@ const SkillContainer = styled(Container)`
   `}
 `
 
-const renderSkill = (skill, index) => <Skill key={index}>{skill}</Skill>
+const renderTools = (fields, index) => <Skill key={index}>{fields.tool}</Skill>
 
 const ProjectHighlight = ({ children, details, variant }) => {
-  const { heading, stack } = details.frontmatter
-  const { fluid } = details.frontmatter.image.childImageSharp
-  const { html } = details
+  const { primary, fields } = details
+  const { title, content, imageSharp } = primary
 
   return (
     <HighlightSection variant="mono">
       <ImageContainer size="large">
         <ImageWrapper>
-          <Img fluid={fluid} />
+          <Img fluid={imageSharp.childImageSharp.fluid} />
         </ImageWrapper>
       </ImageContainer>
       <SkillContainer>
         <h5>made with</h5>
-        <GridFlex justify="center">{stack.map(renderSkill)}</GridFlex>
+        <GridFlex justify="center">{fields.map(renderTools)}</GridFlex>
       </SkillContainer>
       <Container>
         <GridFlex align="center" justify="center">
           <GridFlexItem md="7">
-            <Title>{heading}</Title>
-            <div dangerouslySetInnerHTML={{ __html: html }} />
+            <Title>{title}</Title>
+            <RichText render={content} />
           </GridFlexItem>
         </GridFlex>
       </Container>
