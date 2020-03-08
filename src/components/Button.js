@@ -10,14 +10,36 @@ const { defaultStyles } = button
 const primaryStyles = theme.variants('mode', 'variant', button.primary)
 const ghostStyles = theme.variants('mode', 'variant', button.ghost)
 
-const buttonSolidCss = css`
+const buttonStyles = css`
   ${defaultStyles}
-  ${primaryStyles}
+  ${props => {
+    if (props.hasIcon) {
+      return css`
+        ${iconCss}
+      `
+    }
+  }}
+  ${props => {
+    if (props.type === 'ghost') {
+      return css`
+        ${ghostStyles}
+      `
+    } else {
+      return css`
+        ${primaryStyles}
+      `
+    }
+  }}
 `
 
-const buttonGhostCss = css`
-  ${defaultStyles}
-  ${ghostStyles}
+const ButtonA = styled.a`
+  ${buttonStyles}
+`
+
+const ButtonLink = styled(({ type, variant, hasIcon, ...props }) => (
+  <Link {...props} />
+))`
+  ${buttonStyles}
 `
 
 const renderIcon = (hasIcon, icon) => {
@@ -36,64 +58,28 @@ const Button = ({
   linksOut,
   isEmail,
 }) => {
-  let ButtonSolid, ButtonGhost
-
-  // use regular a tags if link is external else use gatsby link
   if (linksOut || isEmail) {
-    ButtonSolid = styled.a`
-      ${buttonSolidCss}
-    `
-    ButtonGhost = styled.a`
-      ${buttonGhostCss}
-    `
+    return (
+      <ButtonA
+        to={to}
+        href={to}
+        type={type}
+        variant={variant}
+        target={linksOut ? '_blank' : ''}
+        rel={linksOut ? 'noopener nofoloow' : ''}
+        hasIcon={hasIcon}
+      >
+        {children}
+        {renderIcon(hasIcon, icon)}
+      </ButtonA>
+    )
   } else {
-    ButtonSolid = styled(Link)`
-      ${buttonSolidCss}
-    `
-    ButtonGhost = styled(Link)`
-      ${buttonGhostCss}
-    `
-  }
-
-  // cant pass hasIcon to Link component so I handle the logic for icons here rather than in the styles/button.js file
-  if (hasIcon) {
-    ButtonSolid = styled(ButtonSolid)`
-      ${iconCss}
-    `
-    ButtonGhost = styled(ButtonGhost)`
-      ${iconCss}
-    `
-  }
-
-  switch (type) {
-    case 'solid':
-      return (
-        <ButtonSolid
-          to={to}
-          href={to}
-          variant={variant}
-          target={linksOut ? '_blank' : ''}
-          rel={linksOut ? 'noopener nofoloow' : ''}
-        >
-          {children}
-          {renderIcon(hasIcon, icon)}
-        </ButtonSolid>
-      )
-    case 'ghost':
-      return (
-        <ButtonGhost
-          to={to}
-          href={to}
-          variant={variant}
-          target={linksOut ? '_blank' : ''}
-          rel={linksOut ? 'noopener nofoloow' : ''}
-        >
-          {children}
-          {renderIcon(hasIcon, icon)}
-        </ButtonGhost>
-      )
-    default:
-      return null
+    return (
+      <ButtonLink to={to} variant={variant} type={type} hasIcon={hasIcon}>
+        {children}
+        {renderIcon(hasIcon, icon)}
+      </ButtonLink>
+    )
   }
 }
 
