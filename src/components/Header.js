@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
-import { debounce } from 'lodash'
+import debounce from 'lodash.debounce'
 import { Container } from '@components'
 import { Navigation } from '@components/Navigation'
 
