@@ -1,6 +1,7 @@
 import React from 'react'
-import { graphql } from 'gatsby'
 import styled from 'styled-components'
+import { graphql } from 'gatsby'
+
 import {
   Banner,
   Button,
@@ -18,8 +19,8 @@ const ProjectsHeader = styled.div`
   `}
 `
 
-const Index = ({ data }) => {
-  const projects = data.projects.edges
+const Index = ({ data: { prismic } }) => {
+  const projects = prismic.projects.edges
 
   return (
     <Layout>
@@ -41,15 +42,22 @@ const Index = ({ data }) => {
           <ProjectsHeader>
             <h4 style={{ fontWeight: '900' }}>Featured Projects</h4>
           </ProjectsHeader>
-          {projects.map((project, index) => (
-            <Project
-              key={`project-${project.node.id}`}
-              id={`project-${project.node.id}`}
-              index={index}
-              details={project.node.frontmatter}
-              excerpt={project.node.excerpt}
-            />
-          ))}
+          {projects.map((project, index) => {
+            const { title, _meta, imageSharp } = project.node
+            const details = {
+              title,
+              imageSharp,
+              uid: _meta.uid,
+            }
+            return (
+              <Project
+                key={`project-${_meta.uid}`}
+                id={`project-${_meta.uid}`}
+                index={index}
+                details={details}
+              />
+            )
+          })}
           <div style={{ textAlign: 'center' }}>
             <Button to="/projects" type="ghost" hasIcon={true}>
               All Projects
@@ -63,32 +71,23 @@ const Index = ({ data }) => {
 
 export const projectQuery = graphql`
   query IndexQuery {
-    projects: allMarkdownRemark(
-      limit: 3
-      filter: {
-        fileAbsolutePath: { regex: "/index.md/" }
-        frontmatter: { featured: { eq: true } }
-      }
-      sort: { fields: frontmatter___date, order: DESC }
-    ) {
-      edges {
-        node {
-          id
-          frontmatter {
+    prismic {
+      projects: allProjects(first: 3, where: { featured: true }) {
+        edges {
+          node {
             title
-            position
-            slug
-            year
-            featured
-            image {
+            _meta {
+              uid
+            }
+            image
+            imageSharp {
               childImageSharp {
-                fluid(maxWidth: 1000, quality: 80) {
+                fluid(maxWidth: 720, quality: 80) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
           }
-          excerpt
         }
       }
     }
