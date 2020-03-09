@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 import { RichText } from 'prismic-reactjs'
 import { withPrefix } from 'gatsby'
+import { format } from 'date-fns'
 
 import { Container, GridFlex, GridFlexItem, Title } from '@components'
 import Section from '@components/Section'
@@ -111,7 +112,9 @@ const ProjectIntro = ({ children, details, meta, variant }) => {
           <ProjectMeta>
             <ProjectMetaItem>
               <ProjectMetaLabel>Completed</ProjectMetaLabel>
-              <div style={{ paddingLeft: '1.25rem' }}>{completed}</div>
+              <div style={{ paddingLeft: '1.25rem' }}>
+                {format(new Date(completed), 'yyyy')}
+              </div>
             </ProjectMetaItem>
             <ProjectMetaItem>
               <ProjectMetaLabel>Client</ProjectMetaLabel>

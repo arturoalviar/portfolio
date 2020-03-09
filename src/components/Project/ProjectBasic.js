@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { format } from 'date-fns'
+
 import { Button, GridFlex } from '@components'
 
 const ProjectBasicWrapper = styled.div`
@@ -49,7 +51,7 @@ const ProjectBasic = ({ details }) => {
           <h2>{title}</h2>
           <ProjectBasicDetails>
             <p>
-              Completed in {completed}
+              Completed in {format(new Date(completed), 'yyyy')}
               {personalproject ? ' as a personal project' : ` for ${client}`}.
             </p>
             <p>Role: {role}.</p>
