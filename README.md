@@ -2,21 +2,22 @@
 
 Redesigned my portfolio using GatsbyJS
 
-© Copyright 2019 Arturo Alviar. All Rights Reserved.
+© Copyright 2019-2020 Arturo Alviar. All Rights Reserved.
 
 ## Features/Stack
 
 - Hosted on Zeit
 - React Hooks
-- React Pose for transitions
+- Framer Motion for transitions
 - Styled components with styled theming
-- Remark and JSON for content
+- Prismic API
 - PWA
 - Offline support
 
 ## TODO
 
-- Use a headless CMS like prismic.io and phase out Remark + JSON
+- ~~Use a headless CMS like prismic.io and phase out Remark + JSON~~
+- ~~Replace React Pose (deprecated) with Framer Motion~~
 
 ## License
 
