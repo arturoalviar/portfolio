@@ -8,6 +8,7 @@ import {
   ResumeHeader,
   ResumeBlock,
   ResumeSkill,
+  PrintGlobalStyles,
 } from '@styles/pages/resume'
 
 const Resume = ({ data: { prismic } }) => {
@@ -22,6 +23,7 @@ const Resume = ({ data: { prismic } }) => {
 
   return (
     <Layout hasFooter={false}>
+      <PrintGlobalStyles />
       <SEO title="Resume" />
       <ResumeWrapper>
         <Section>
@@ -36,10 +38,8 @@ const Resume = ({ data: { prismic } }) => {
                       label,
                     } = item
                     return (
-                      <li>
-                        <a key={`link-${index}`} href={url}>
-                          {label}
-                        </a>
+                      <li key={`link-item-${index}`}>
+                        <a href={url}>{label}</a>
                       </li>
                     )
                   })}
