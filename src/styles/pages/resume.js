@@ -1,4 +1,35 @@
-import styled from 'styled-components'
+import styled, { css, createGlobalStyle } from 'styled-components'
+
+const PrintGlobalStyles = createGlobalStyle`
+  @media print {
+    @page {
+      margin: 10mm 5mm;
+    }
+    body {
+      header[class*="HeaderWrapper"] {
+        display: none !important;
+      }
+      section {
+        padding: 0 !important;
+      }
+    }
+`
+
+const printBodyTextStyles = css`
+  h5 {
+    font-size: 11pt;
+    line-height: 1.5;
+    margin: 0;
+    orphans: 2;
+    widows: 2;
+  }
+  li,
+  p {
+    font-size: 9pt;
+    line-height: 1.25;
+    margin: 0;
+  }
+`
 
 const ResumeWrapper = styled.div`
   position: relative;
@@ -6,11 +37,14 @@ const ResumeWrapper = styled.div`
   ${props => props.theme.minMedia.md`
     margin-top: ${props.theme.mixins.remCalc(50)};
   `}
+  @media print {
+    margin: 0;
+  }
 `
 
 const ResumeHeader = styled.header`
   display: grid;
-  align-items: flex-start;
+  align-items: center;
   grid-template-columns: 1fr 120px;
   grid-gap: ${props => props.theme.gutter.grid};
   margin-bottom: ${props => props.theme.mixins.remCalc(20)};
@@ -37,6 +71,28 @@ const ResumeHeader = styled.header`
       line-height: 1.5;
     }
   `}
+
+  @media print {
+    grid-template-columns: 1fr 2in;
+    margin: 0;
+    h1 {
+      font-size: 15pt;
+      line-height: 2;
+    }
+    ul {
+      li:first-child {
+        display: inline-block;
+        a:after {
+          content: 'yo@arturoalviar.com';
+          display: inline;
+          padding-left: 1.5mm;
+        }
+      }
+      li:not(:first-child) {
+        display: none;
+      }
+    }
+  }
 `
 
 const ResumeGrid = styled.div`
@@ -45,6 +101,11 @@ const ResumeGrid = styled.div`
     grid-template-columns: 1fr 250px;
     grid-gap: ${props.theme.gutter.grid};
   `}
+  @media print {
+    display: grid;
+    grid-template-columns: 1fr 2in;
+    grid-gap: 1mm;
+  }
 `
 
 const ResumeBlock = styled.div`
@@ -71,6 +132,15 @@ const ResumeBlock = styled.div`
     }
   }
 
+  @media print {
+    h3 {
+      font-size: 13pt;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+    ${printBodyTextStyles}
+  }
+
   .resume-item-project {
     h5 {
       font-weight: bold;
@@ -80,6 +150,12 @@ const ResumeBlock = styled.div`
         font-size: ${props.theme.mixins.remCalc(14)};
       }
     `}
+    @media print {
+      ${printBodyTextStyles}
+      h5 {
+        line-height: 1.8;
+      }
+    }
   }
 
   .resume-item-subheading {
@@ -87,6 +163,10 @@ const ResumeBlock = styled.div`
     font-size: ${props => props.theme.mixins.remCalc(12)};
     font-weight: 600;
     margin-bottom: ${props => props.theme.mixins.remCalc(14)};
+    @media print {
+      font-size: 8pt;
+      margin: 0;
+    }
   }
 `
 
@@ -99,6 +179,26 @@ const ResumeSkill = styled.span`
   margin-right: 10px;
   margin-bottom: 10px;
   padding: 5px 10px;
+  @media print {
+    background: none;
+    font-size: 8pt;
+    padding: 0;
+    margin: 0;
+    padding-right: 1.5mm;
+    line-height: 1;
+    &:not(:last-of-type) {
+      &:after {
+        content: ',';
+      }
+    }
+  }
 `
 
-export { ResumeWrapper, ResumeGrid, ResumeHeader, ResumeBlock, ResumeSkill }
+export {
+  ResumeWrapper,
+  ResumeGrid,
+  ResumeHeader,
+  ResumeBlock,
+  ResumeSkill,
+  PrintGlobalStyles,
+}
