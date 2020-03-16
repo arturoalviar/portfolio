@@ -1,4 +1,8 @@
-import { css } from 'styled-components'
+import React from 'react'
+import { Link } from 'gatsby'
+import styled, { css } from 'styled-components'
+import theme from 'styled-theming'
+
 import colors from '@styles/colors'
 import { remCalc } from '@styles/mixins'
 
@@ -66,7 +70,7 @@ const primaryStyles = ({ bg, bgHover, text, textHover }) => {
   `
 }
 
-export const primary = {
+const primary = {
   default: {
     light: primaryStyles({
       bg: colors.black,
@@ -138,7 +142,7 @@ const ghostStyle = color => {
   `
 }
 
-export const ghost = {
+const ghost = {
   default: {
     light: ghostStyle(colors.black),
     dark: ghostStyle(colors.white),
@@ -159,4 +163,47 @@ const button = {
   primary,
 }
 
-export default button
+export const primaryStylesVariants = theme.variants(
+  'mode',
+  'variant',
+  button.primary
+)
+export const ghostStylesVariants = theme.variants(
+  'mode',
+  'variant',
+  button.ghost
+)
+
+const buttonStyles = css`
+  ${defaultStyles}
+  ${props => {
+    if (props.hasIcon) {
+      return css`
+        ${iconCss}
+      `
+    }
+  }}
+  ${props => {
+    if (props.type === 'ghost') {
+      return css`
+        ${ghostStylesVariants}
+      `
+    } else {
+      return css`
+        ${primaryStylesVariants}
+      `
+    }
+  }}
+`
+
+const ButtonA = styled.a`
+  ${buttonStyles}
+`
+
+const ButtonLink = styled(({ type, variant, hasIcon, ...props }) => (
+  <Link {...props} />
+))`
+  ${buttonStyles}
+`
+
+export { ButtonA, ButtonLink }

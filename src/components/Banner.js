@@ -1,20 +1,13 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import styled from 'styled-components'
+
 import { Container, Title } from '@components'
-import banner from '@styles/components/banner'
 
-const BannerWrapper = styled.div`
-  ${banner.wrapper}
-`
-
-const BannerHeading = styled.h1`
-  ${banner.heading}
-`
-
-const BannerContent = styled.div`
-  ${banner.content}
-`
+import {
+  BannerWrapper,
+  BannerHeading,
+  BannerContent,
+} from '@styles/components/banner'
 
 const renderSubTitle = subTitle => {
   if (subTitle) {

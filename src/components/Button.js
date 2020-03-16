@@ -1,46 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import styled, { css } from 'styled-components'
-import theme from 'styled-theming'
-import { Link } from 'gatsby'
-import button, { iconCss } from '@styles/components/button'
 import Icon from '@components/Icon'
 
-const { defaultStyles } = button
-const primaryStyles = theme.variants('mode', 'variant', button.primary)
-const ghostStyles = theme.variants('mode', 'variant', button.ghost)
-
-const buttonStyles = css`
-  ${defaultStyles}
-  ${props => {
-    if (props.hasIcon) {
-      return css`
-        ${iconCss}
-      `
-    }
-  }}
-  ${props => {
-    if (props.type === 'ghost') {
-      return css`
-        ${ghostStyles}
-      `
-    } else {
-      return css`
-        ${primaryStyles}
-      `
-    }
-  }}
-`
-
-const ButtonA = styled.a`
-  ${buttonStyles}
-`
-
-const ButtonLink = styled(({ type, variant, hasIcon, ...props }) => (
-  <Link {...props} />
-))`
-  ${buttonStyles}
-`
+import { ButtonA, ButtonLink } from '@styles/components/button'
 
 const renderIcon = (hasIcon, icon) => {
   if (hasIcon) {

@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import styled, { css } from 'styled-components'
 import theme from 'styled-theming'
 import { remCalc } from '@styles/mixins'
 import { bgs } from '@styles/colors'
@@ -43,10 +43,16 @@ const content = css`
   }
 `
 
-const banner = {
-  content,
-  heading,
-  wrapper,
-}
+const BannerWrapper = styled.div`
+  ${wrapper}
+`
 
-export default banner
+const BannerHeading = styled.h1`
+  ${heading}
+`
+
+const BannerContent = styled.div`
+  ${content}
+`
+
+export { BannerWrapper, BannerHeading, BannerContent }

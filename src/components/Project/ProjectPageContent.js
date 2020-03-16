@@ -1,20 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import theme from 'styled-theming'
 import { motion } from 'framer-motion'
 import smoothscroll from 'smoothscroll-polyfill'
+
 import {
   ProjectAdditionalCollection,
   ProjectCollection,
   Section,
 } from '@components'
-import button from '@styles/components/button'
 
-const primaryStyles = theme.variants('mode', 'variant', button.primary)
+import { defaultStyles, primaryStylesVariants } from '@styles/components/button'
 
 const Button = styled.button`
-  ${button.defaultStyles}
-  ${primaryStyles}
+  ${defaultStyles};
+  ${primaryStylesVariants}
 `
 
 const ButtonWrapper = styled.div`
