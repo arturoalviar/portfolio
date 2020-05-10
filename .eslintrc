@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:react/recommended"
+  ],
+  "parser": "babel-eslint",
+  "plugins": ["react", "import"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "settings": {
+    "import/resolver": {
+      "eslint-import-resolver-custom-alias": {
+        "alias": {
+          "@": "./src",
+          "@components": "./src/components",
+          "@styles": "./src/styles",
+          "config": "./config"
+        }
+      }
+    }
+  },
+  "rules": {
+    "strict": 0,
+    "react/prop-types": "off"
+  }
+}
