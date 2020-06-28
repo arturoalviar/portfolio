@@ -5,7 +5,11 @@ import { Wrapper } from './src/components'
 export const wrapPageElement = ({ element, props }) => {
   return (
     <Location>
-      {({ location }) => <Wrapper {...props}>{element}</Wrapper>}
+      {({ location }) => (
+        <Wrapper location={location} {...props}>
+          {element}
+        </Wrapper>
+      )}
     </Location>
   )
 }

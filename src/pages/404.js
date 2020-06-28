@@ -21,7 +21,7 @@ const NotFoundPage = () => (
     <Banner title="Oh no, a 404!" size="100vh" variant="color" hasTexture>
       <h4>
         It looks like I did not make this page or it simply does not exist. No
-        worries, let's go <HomeLink to="/">back home.</HomeLink>
+        worries, let&apos;s go <HomeLink to="/">back home.</HomeLink>
       </h4>
     </Banner>
   </Layout>

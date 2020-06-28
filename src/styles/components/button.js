@@ -45,7 +45,7 @@ export const defaultStyles = css`
   z-index: 1;
 `
 
-const primaryStyles = ({ bg, bgHover, text, textHover }) => {
+const primaryStyles = ({ bg, text, textHover }) => {
   return css`
     color: ${text};
     z-index: 1;
@@ -74,13 +74,11 @@ const primary = {
   default: {
     light: primaryStyles({
       bg: colors.black,
-      bgHover: colors.black,
       text: colors.white,
       textHover: colors.black,
     }),
     dark: primaryStyles({
       bg: colors.white,
-      bgHover: colors.whiteHover,
       text: colors.black,
       textHover: colors.white,
     }),
@@ -88,13 +86,11 @@ const primary = {
   inverse: {
     light: primaryStyles({
       bg: colors.white,
-      bgHover: colors.whiteHover,
       text: colors.black,
       textHover: colors.white,
     }),
     dark: primaryStyles({
       bg: colors.black,
-      bgHover: colors.black,
       text: colors.white,
       textHover: colors.black,
     }),
@@ -102,13 +98,11 @@ const primary = {
   color: {
     light: primaryStyles({
       bg: colors.main,
-      bgHover: colors.mainHover,
       text: colors.black,
       textHover: 'inherit',
     }),
     dark: primaryStyles({
       bg: colors.main,
-      bgHover: colors.mainHover,
       text: colors.black,
       textHover: colors.main,
     }),
@@ -199,7 +193,7 @@ const buttonStyles = css`
 const ButtonA = styled.a`
   ${buttonStyles}
 `
-
+// eslint-disable-next-line
 const ButtonLink = styled(({ type, variant, hasIcon, ...props }) => (
   <Link {...props} />
 ))`

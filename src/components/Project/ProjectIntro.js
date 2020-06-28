@@ -91,7 +91,7 @@ const ProjectIntroHighlightImage = styled.div`
   }
 `
 
-const ProjectIntro = ({ children, details, meta, variant }) => {
+const ProjectIntro = ({ details, meta }) => {
   const { completed, client, personalproject, role } = meta
   const { primary } = details
   const { title, content, imageSharp } = primary

@@ -63,12 +63,12 @@ const SkillContainer = styled(Container)`
 
 const renderTools = (fields, index) => <Skill key={index}>{fields.tool}</Skill>
 
-const ProjectHighlight = ({ children, details, variant }) => {
+const ProjectHighlight = ({ details, variant }) => {
   const { primary, fields } = details
   const { title, content, imageSharp } = primary
 
   return (
-    <HighlightSection variant="mono">
+    <HighlightSection variant={variant}>
       <ImageContainer size="large">
         <ImageWrapper>
           <Img fluid={imageSharp.childImageSharp.fluid} />
@@ -92,6 +92,10 @@ const ProjectHighlight = ({ children, details, variant }) => {
 
 ProjectHighlight.propTypes = {
   details: PropTypes.object.isRequired,
+  variant: PropTypes.string,
+}
+ProjectHighlight.defaultProps = {
+  variant: 'mono',
 }
 
 export default ProjectHighlight

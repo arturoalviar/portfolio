@@ -2,7 +2,7 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import { Container, Grid, Project } from '@components'
 
-const ProjectCollection = ({ type }) => (
+const ProjectCollection = () => (
   <Container>
     <StaticQuery
       query={`${ProjectsQuery}`}
