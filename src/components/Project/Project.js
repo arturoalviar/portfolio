@@ -8,7 +8,7 @@ import {
   ProjectCardImageWrapper,
   ProjectCardDetails,
   ProjectCardTitle,
-} from './ProjectCard'
+} from '@styles/components/project/projectCard'
 import {
   ProjectWide,
   ProjectWideDetails,
@@ -17,7 +17,7 @@ import {
   ProjectWideImage,
   ProjectWideImageWrapper,
   ProjectButtonGroup,
-} from './ProjectWide'
+} from '@styles/components/project/projectWide'
 
 const Project = ({ details, index, type, excerpt }) => {
   const { title, uid, website, imageSharp } = details
