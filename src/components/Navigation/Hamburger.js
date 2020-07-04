@@ -1,16 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-import hamburger from '@styles/components/hamburger'
 
-const { hamburgerButtonStyles, hamburgerLineStyles } = hamburger
-
-const HamburgerButton = styled.button`
-  ${hamburgerButtonStyles}
-`
-
-const HamburgerLine = styled.div`
-  ${hamburgerLineStyles}
-`
+import { HamburgerButton, HamburgerLine } from '@styles/components/hamburger'
 
 const Hamburger = ({ isMobileMenuVisible, toggleMobileMenu }) => {
   const currentClass = isMobileMenuVisible ? 'is-active' : ''

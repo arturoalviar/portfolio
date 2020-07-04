@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const hamburgerButtonStyles = css`
   background: none;
@@ -63,9 +63,12 @@ export const hamburgerLineStyles = css`
     transform 0.25s ease-out 0.25s, opacity 0.001s linear 0.5s;
 `
 
-const hamburger = {
-  hamburgerButtonStyles,
-  hamburgerLineStyles,
-}
+const HamburgerButton = styled.button`
+  ${hamburgerButtonStyles}
+`
 
-export default hamburger
+const HamburgerLine = styled.div`
+  ${hamburgerLineStyles}
+`
+
+export { HamburgerButton, HamburgerLine }
