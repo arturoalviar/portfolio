@@ -72,7 +72,11 @@ const Index = ({ data: { prismic } }) => {
 export const projectQuery = graphql`
   query IndexQuery {
     prismic {
-      projects: allProjects(first: 3, where: { featured: true }) {
+      projects: allProjects(
+        first: 3
+        where: { featured: true }
+        sortBy: completed_DESC
+      ) {
         edges {
           node {
             title
