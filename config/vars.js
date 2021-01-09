@@ -25,4 +25,9 @@ export const socialLinks = {
     link: 'https://www.linkedin.com/in/arturoalviar/',
     icon: 'linkedin',
   },
+  twitter: {
+    label: 'Twitter',
+    link: 'https://twitter.com/arturoalviar',
+    icon: 'twitter',
+  },
 }
