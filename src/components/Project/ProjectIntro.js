@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import { RichText } from 'prismic-reactjs'
-import { format } from 'date-fns'
 
 import { Container, GridFlex, GridFlexItem, Title } from '@components'
 
@@ -18,6 +17,7 @@ const ProjectIntro = ({ details, meta }) => {
   const { completed, client, personalproject, role } = meta
   const { primary } = details
   const { title, content, imageSharp } = primary
+  const completedDate = new Date(completed)
 
   return (
     <ProjectIntroSection>
@@ -36,7 +36,9 @@ const ProjectIntro = ({ details, meta }) => {
             <ProjectMetaItem>
               <ProjectMetaLabel>Completed</ProjectMetaLabel>
               <div style={{ paddingLeft: '1.25rem' }}>
-                {format(new Date(completed), 'yyyy')}
+                {new Intl.DateTimeFormat('en-US', { year: 'numeric' }).format(
+                  completedDate
+                )}
               </div>
             </ProjectMetaItem>
             <ProjectMetaItem>

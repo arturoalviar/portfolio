@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { format } from 'date-fns'
 
 import { Button, GridFlex } from '@components'
 
@@ -20,6 +19,7 @@ const ProjectBasic = ({ details }) => {
     client,
     source,
   } = details
+  const completedDate = new Date(completed)
 
   return (
     <ProjectBasicWrapper>
@@ -28,7 +28,10 @@ const ProjectBasic = ({ details }) => {
           <h2>{title}</h2>
           <ProjectBasicDetails>
             <p>
-              Completed in {format(new Date(completed), 'yyyy')}
+              Completed in{' '}
+              {new Intl.DateTimeFormat('en-US', { year: 'numeric' }).format(
+                completedDate
+              )}
               {personalproject ? ' as a personal project' : ` for ${client}`}.
             </p>
             <p>Role: {role}.</p>
