@@ -11,6 +11,9 @@
     "node": true
   },
   "settings": {
+    "react": {
+      "version": "detect"
+    },
     "import/resolver": {
       "eslint-import-resolver-custom-alias": {
         "alias": {
