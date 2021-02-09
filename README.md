@@ -1,23 +1,22 @@
-# Arturo's Portfolio
+<h1 align="center">
+  <a href="https://arturoalviar.com/">
+    <img alt="Arturo Alviar Logo" title="Arturo Alviar Logo" src="src/images/aa-icon.png" width="96">
+  </a> 
+  </br>
+    Arturo Alviar
+</h1>
 
 Redesigned my portfolio using GatsbyJS
 
-© Copyright 2019-2020 Arturo Alviar. All Rights Reserved.
-
 ## Features/Stack
 
-- Hosted on Zeit
+- Hosted on [Vercel](https://vercel.com/)
 - React Hooks
 - Framer Motion for transitions
 - Styled components with styled theming
 - Prismic API
 - PWA
 - Offline support
-
-## TODO
-
-- ~~Use a headless CMS like prismic.io and phase out Remark + JSON~~
-- ~~Replace React Pose (deprecated) with Framer Motion~~
 
 ## License
 
