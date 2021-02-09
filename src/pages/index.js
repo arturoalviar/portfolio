@@ -31,7 +31,7 @@ const Index = ({ data: { prismic } }) => {
       >
         <h4>
           I am passionate about web development, like solving problems, and
-          making the Internet a more beautiful place.
+          enjoy making the Internet a more beautiful place.
         </h4>
         <Button variant="color" to="/projects" hasIcon={true}>
           See Work

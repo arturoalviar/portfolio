@@ -2,7 +2,7 @@ import { css } from 'styled-components'
 import { remCalc } from '@styles/mixins'
 import { minMedia } from '@styles/breakpoints'
 
-const fontMain = 'Muli'
+const fontMain = 'Mulish'
 const fontSecond = 'Playfair Display'
 
 export const globalType = css`
